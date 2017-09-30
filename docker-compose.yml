@@ -1,0 +1,15 @@
+version: "3"
+services:
+  bpm:
+    build: 
+      context: ./sim-dev-bpms7
+    image: ancine/sim-dev-bpms7:latest
+    ports:
+      - "8001:8001"
+      - "8080:8080"
+      - "9990:9990"
+    # volumes:
+      # - ./src:/opt/jboss/src
+      # - ./data:/opt/jboss/data
+      # - ./logs:/opt/jboss/wildfly/standalone/log
+      # - ~/.m2:/opt/jboss/.m2

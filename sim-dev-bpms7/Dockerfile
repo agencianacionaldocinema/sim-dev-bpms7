@@ -1,28 +1,7 @@
 FROM ancine/rh_bpms
 
-ENV SRC_DIR=/opt/jboss/src
-ENV DATA_DIR /opt/jboss/data
-ENV CASE_MGMT_WAR_URL=http://repository.jboss.org/nexus/content/groups/public-jboss/org/jbpm/jbpm-wb-case-mgmt-showcase/7.3.0.Final/jbpm-wb-case-mgmt-showcase-7.3.0.Final-wildfly10.war
-
 USER jboss
-RUN mkdir -p $SRC_DIR $DATA_DIR
-
 COPY support/standalone-full.xml $JBOSS_HOME/standalone/configuration/
-
-USER root
-RUN yum install -y git \
-    && yum clean all \
-    && rm -rf /var/cache/yum \
-    && curl -sSL http://archive.apache.org/dist/maven/maven-3/3.2.5/binaries/apache-maven-3.2.5-bin.tar.gz | tar xzf - -C /usr/share \
-    && mv /usr/share/apache-maven-3.2.5 /usr/share/maven \
-    && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn \
-    && mkdir /opt/jboss/.m2 \
-    && chown -R jboss:jboss $JBOSS_HOME/standalone/configuration/standalone-full.xml \
-    /opt/jboss/.m2 \
-    $DATA_DIR 
-USER jboss
-
-RUN  curl -J -L $CASE_MGMT_WAR_URL -o /opt/jboss/jboss/standalone/deployments/jbpm-casemgmt.war 
 
 RUN $JBOSS_HOME/bin/add-user.sh -u admin -p ancine1!  --silent \
     && $JBOSS_HOME/bin/add-user.sh -a -r ApplicationRealm -u admin -p ancine1! -ro analyst,admin,user,manager,kiemgmt,kie-server,rest-all,SIM_PROPONENTE,SIM_COORD_TRIAGEM,SIM_COORD_ANALISE_DIREITOS,SIM_COORD_ANALISE_TECNICA,SIM_SUP_FOMENTO --silent \
@@ -49,9 +28,5 @@ RUN $JBOSS_HOME/bin/add-user.sh -u admin -p ancine1!  --silent \
     && $JBOSS_HOME/bin/add-user.sh -a -r ApplicationRealm -u mary -p mary1! -ro employees,manager,kie-server,rest-all,user,IT --silent \
     && $JBOSS_HOME/bin/add-user.sh -a -r ApplicationRealm -u paul -p paul1! -ro employees,manager,kie-server,rest-all,user,IT --silent \
     && $JBOSS_HOME/bin/add-user.sh -a -r ApplicationRealm -u kieserver -p kieserver1! -ro employees,kie-server,rest-all,user --silent 
-
-
-VOLUME $DATA_DIR
-VOLUME /opt/jboss/.m2
 
 CMD ["/opt/jboss/jboss/bin/standalone.sh", "-c", "standalone-full.xml",  "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]

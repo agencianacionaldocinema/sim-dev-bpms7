@@ -1,0 +1,5179 @@
+---
+swagger: "2.0"
+info: {}
+basePath: "/kie-server-8.0.0-SNAPSHOT-ee7/services/rest"
+tags:
+- name: "case-admin"
+- name: "case-query"
+- name: "case"
+- name: "kie-server-config"
+- name: "kie-server"
+- name: "dmn"
+- name: "drools"
+- name: "jbpm-process-definition"
+- name: "jbpm-documents"
+- name: "jbpm-jobs"
+- name: "jbpm-processes"
+- name: "jbpm-query-definitions"
+- name: "jbpm-queries"
+- name: "jbpm-tasks"
+- name: "process-instance-search"
+- name: "task-search"
+- name: "jbpm-forms"
+- name: "jbpm-images"
+- name: "planner-solvers"
+paths:
+  /server/admin/cases/instances:
+    get:
+      tags:
+      - "case-admin"
+      operationId: "getCaseInstances"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "status"
+        in: "query"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      - name: "sort"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "sortOrder"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: true
+      responses:
+        default:
+          description: "successful operation"
+  /server/queries/cases/instances:
+    get:
+      tags:
+      - "case-query"
+      operationId: "getCaseInstances"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "dataItemName"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "dataItemValue"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "owner"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "status"
+        in: "query"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      - name: "sort"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "sortOrder"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: true
+      responses:
+        default:
+          description: "successful operation"
+  /server/queries/cases/processes:
+    get:
+      tags:
+      - "case-query"
+      operationId: "getProcessDefinitions"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "filter"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      - name: "sort"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "sortOrder"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: true
+      responses:
+        default:
+          description: "successful operation"
+  /server/queries/cases/instances/{caseId}/caseFile:
+    get:
+      tags:
+      - "case-query"
+      operationId: "getCaseInstanceDataItems"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "caseId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "name"
+        in: "query"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      - name: "type"
+        in: "query"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      responses:
+        default:
+          description: "successful operation"
+  /server/queries/cases:
+    get:
+      tags:
+      - "case-query"
+      operationId: "getCaseDefinitions"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "filter"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      - name: "sort"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "sortOrder"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: true
+      responses:
+        default:
+          description: "successful operation"
+  /server/queries/cases/{caseRoleName}/instances:
+    get:
+      tags:
+      - "case-query"
+      operationId: "getCaseInstancesByRole"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "caseRoleName"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "status"
+        in: "query"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      - name: "sort"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "sortOrder"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: true
+      responses:
+        default:
+          description: "successful operation"
+  /server/queries/cases/instances/{caseId}/tasks/instances/admins:
+    get:
+      tags:
+      - "case-query"
+      operationId: "getCaseInstanceTasksAsAdmin"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "caseId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "user"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "status"
+        in: "query"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      - name: "sort"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "sortOrder"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: true
+      responses:
+        default:
+          description: "successful operation"
+  /server/queries/cases/instances/{caseId}/tasks/instances/stakeholders:
+    get:
+      tags:
+      - "case-query"
+      operationId: "getCaseInstanceTasksAsStakeholder"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "caseId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "user"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "status"
+        in: "query"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      - name: "sort"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "sortOrder"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: true
+      responses:
+        default:
+          description: "successful operation"
+  /server/queries/cases/{id}/processes:
+    get:
+      tags:
+      - "case-query"
+      operationId: "getProcessDefinitionsByContainer"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      - name: "sort"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "sortOrder"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: true
+      responses:
+        default:
+          description: "successful operation"
+  /server/queries/cases/instances/{caseId}/tasks/instances/pot-owners:
+    get:
+      tags:
+      - "case-query"
+      operationId: "getCaseInstanceTasksAsPotentialOwner"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "caseId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "user"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "status"
+        in: "query"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      - name: "sort"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "sortOrder"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: true
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/cases/instances/{caseId}:
+    get:
+      tags:
+      - "case"
+      operationId: "getCaseInstance"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "caseId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "withData"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: false
+      - name: "withRoles"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: false
+      - name: "withMilestones"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: false
+      - name: "withStages"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: false
+      responses:
+        default:
+          description: "successful operation"
+    delete:
+      tags:
+      - "case"
+      operationId: "cancelCaseInstance"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "caseId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "destroy"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: false
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/cases/instances/{caseId}/comments:
+    get:
+      tags:
+      - "case"
+      operationId: "getCaseInstanceComments"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "caseId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "sort"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      responses:
+        default:
+          description: "successful operation"
+    post:
+      tags:
+      - "case"
+      operationId: "addComment"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "caseId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "author"
+        in: "query"
+        required: false
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/cases/instances/{caseId}/comments/{caseCommentId}:
+    put:
+      tags:
+      - "case"
+      operationId: "updateComment"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "caseId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "caseCommentId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "author"
+        in: "query"
+        required: false
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+    delete:
+      tags:
+      - "case"
+      operationId: "removeComment"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "caseId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "caseCommentId"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/cases/instances:
+    get:
+      tags:
+      - "case"
+      operationId: "getCaseInstancesByContainer"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "status"
+        in: "query"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      - name: "sort"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "sortOrder"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: true
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/cases/{caseDefId}/instances:
+    get:
+      tags:
+      - "case"
+      operationId: "getCaseInstancesByDefinition"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "caseDefId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "status"
+        in: "query"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      - name: "sort"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "sortOrder"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: true
+      responses:
+        default:
+          description: "successful operation"
+    post:
+      tags:
+      - "case"
+      operationId: "startCase"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "caseDefId"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/cases/definitions:
+    get:
+      tags:
+      - "case"
+      operationId: "getCaseDefinitionsByContainer"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      - name: "sort"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "sortOrder"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: true
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/cases/instances/{caseId}/milestones:
+    get:
+      tags:
+      - "case"
+      operationId: "getCaseInstanceMilestones"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "caseId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "achievedOnly"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: true
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/cases/instances/{caseId}/stages:
+    get:
+      tags:
+      - "case"
+      operationId: "getCaseInstanceStages"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "caseId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "activeOnly"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: true
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/cases/instances/{caseId}/tasks/{nodeName}:
+    put:
+      tags:
+      - "case"
+      operationId: "triggerAdHocNode"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "caseId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "nodeName"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/cases/instances/{caseId}/caseFile/{dataId}:
+    get:
+      tags:
+      - "case"
+      operationId: "getCaseInstanceDataByName"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "caseId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "dataId"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+    post:
+      tags:
+      - "case"
+      operationId: "putCaseInstanceDataByName"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "caseId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "dataId"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/cases/instances/{caseId}/caseFile:
+    get:
+      tags:
+      - "case"
+      operationId: "getCaseInstanceData"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "caseId"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+    post:
+      tags:
+      - "case"
+      operationId: "putCaseInstanceData"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "caseId"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+    delete:
+      tags:
+      - "case"
+      operationId: "deleteCaseInstanceData"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "caseId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "dataId"
+        in: "query"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/cases/instances/{caseId}/tasks:
+    post:
+      tags:
+      - "case"
+      operationId: "addDynamicTaskToCase"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "caseId"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/cases/instances/{caseId}/stages/{caseStageId}/tasks:
+    post:
+      tags:
+      - "case"
+      operationId: "addDynamicTaskToCase"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "caseId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "caseStageId"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/cases/instances/{caseId}/processes/{pId}:
+    post:
+      tags:
+      - "case"
+      operationId: "addDynamicProcessToCase"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "caseId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "pId"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/cases/instances/{caseId}/stages/{caseStageId}/processes/{pId}:
+    post:
+      tags:
+      - "case"
+      operationId: "addDynamicProcessToCase"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "caseId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "caseStageId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "pId"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/cases/instances/{caseId}/stages/{caseStageId}/tasks/{nodeName}:
+    put:
+      tags:
+      - "case"
+      operationId: "triggerAdHocNodeInStage"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "caseId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "caseStageId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "nodeName"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/cases/instances/{caseId}/adhocfragments:
+    get:
+      tags:
+      - "case"
+      operationId: "getCaseInstanceAdHocFragments"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "caseId"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/cases/instances/{caseId}/processes/instances:
+    get:
+      tags:
+      - "case"
+      operationId: "getCaseInstanceProcessInstance"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "caseId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "status"
+        in: "query"
+        required: false
+        type: "array"
+        items:
+          type: "integer"
+          format: "int32"
+        collectionFormat: "multi"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      - name: "sort"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "sortOrder"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: true
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/cases/instances/{caseId}/nodes/instances:
+    get:
+      tags:
+      - "case"
+      operationId: "getCaseInstanceActiveNodes"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "caseId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "completed"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: false
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/cases/instances/{caseId}/roles:
+    get:
+      tags:
+      - "case"
+      operationId: "getCaseInstanceRoleAssignments"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "caseId"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/cases/instances/{caseId}/roles/{caseRoleName}:
+    put:
+      tags:
+      - "case"
+      operationId: "addRoleAssignment"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "caseId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "caseRoleName"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "user"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "group"
+        in: "query"
+        required: false
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+    delete:
+      tags:
+      - "case"
+      operationId: "removeRoleAssignment"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "caseId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "caseRoleName"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "user"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "group"
+        in: "query"
+        required: false
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/cases/definitions/{caseDefId}:
+    get:
+      tags:
+      - "case"
+      operationId: "getCaseDefinitionsByDefinition"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "caseDefId"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/cases/{caseDefId}/instances/{caseId}:
+    put:
+      tags:
+      - "case"
+      operationId: "reopenCase"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "caseDefId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "caseId"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/config:
+    post:
+      tags:
+      - "kie-server-config"
+      operationId: "executeCommands"
+      consumes:
+      - "application/xml"
+      - "application/json"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/scanner:
+    get:
+      tags:
+      - "kie-server"
+      operationId: "getScannerInfo"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+    post:
+      tags:
+      - "kie-server"
+      operationId: "updateScanner"
+      consumes:
+      - "application/xml"
+      - "application/json"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers:
+    get:
+      tags:
+      - "kie-server"
+      operationId: "listContainers"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "groupId"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "artifactId"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "version"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "status"
+        in: "query"
+        required: false
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}:
+    get:
+      tags:
+      - "kie-server"
+      operationId: "getContainerInfo"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+    put:
+      tags:
+      - "kie-server"
+      operationId: "createContainer"
+      consumes:
+      - "application/xml"
+      - "application/json"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+    delete:
+      tags:
+      - "kie-server"
+      operationId: "disposeContainer"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/state:
+    get:
+      tags:
+      - "kie-server"
+      operationId: "getServerState"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters: []
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/release-id:
+    get:
+      tags:
+      - "kie-server"
+      operationId: "getReleaseId"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+    post:
+      tags:
+      - "kie-server"
+      operationId: "updateReleaseId"
+      consumes:
+      - "application/xml"
+      - "application/json"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server:
+    get:
+      tags:
+      - "kie-server"
+      operationId: "getInfo"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters: []
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/dmn:
+    get:
+      tags:
+      - "dmn"
+      operationId: "getModels"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+    post:
+      tags:
+      - "dmn"
+      operationId: "evaluateDecisions"
+      consumes:
+      - "application/xml"
+      - "application/json"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/instances/{id}:
+    post:
+      tags:
+      - "drools"
+      operationId: "manageContainer"
+      consumes:
+      - "application/xml"
+      - "application/json"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/processes/definitions/{pId}/subprocesses:
+    get:
+      tags:
+      - "jbpm-process-definition"
+      operationId: "getReusableSubProcesses"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "pId"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/processes/definitions/{pId}/entities:
+    get:
+      tags:
+      - "jbpm-process-definition"
+      operationId: "getAssociatedEntities"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "pId"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/processes/definitions/{pId}/tasks/service:
+    get:
+      tags:
+      - "jbpm-process-definition"
+      operationId: "getServiceTasks"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "pId"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/processes/definitions/{pId}/variables:
+    get:
+      tags:
+      - "jbpm-process-definition"
+      operationId: "getProcessVariables"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "pId"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/processes/definitions/{pId}:
+    get:
+      tags:
+      - "jbpm-process-definition"
+      operationId: "getProcessDefinition"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "pId"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/processes/definitions/{pId}/tasks/users:
+    get:
+      tags:
+      - "jbpm-process-definition"
+      operationId: "getTasksDefinitions"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "pId"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/processes/definitions/{pId}/tasks/users/{taskName}/inputs:
+    get:
+      tags:
+      - "jbpm-process-definition"
+      operationId: "getTaskInputMappings"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "pId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "taskName"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/processes/definitions/{pId}/tasks/users/{taskName}/outputs:
+    get:
+      tags:
+      - "jbpm-process-definition"
+      operationId: "getTaskOutputMappings"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "pId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "taskName"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/documents/{documentId}:
+    get:
+      tags:
+      - "jbpm-documents"
+      operationId: "getDocument"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "documentId"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+    put:
+      tags:
+      - "jbpm-documents"
+      operationId: "updateDocument"
+      consumes:
+      - "application/xml"
+      - "application/json"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "documentId"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+    delete:
+      tags:
+      - "jbpm-documents"
+      operationId: "deleteDocument"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "documentId"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/documents:
+    get:
+      tags:
+      - "jbpm-documents"
+      operationId: "listDocuments"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      responses:
+        default:
+          description: "successful operation"
+    post:
+      tags:
+      - "jbpm-documents"
+      operationId: "createDocument"
+      consumes:
+      - "application/xml"
+      - "application/json"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/documents/{documentId}/content:
+    get:
+      tags:
+      - "jbpm-documents"
+      operationId: "getDocumentContent"
+      produces:
+      - "application/octet-stream"
+      parameters:
+      - name: "documentId"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/jobs/keys/{key}:
+    get:
+      tags:
+      - "jbpm-jobs"
+      operationId: "getRequestsByBusinessKey"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "key"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "status"
+        in: "query"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      responses:
+        default:
+          description: "successful operation"
+  /server/jobs/commands/{cmd}:
+    get:
+      tags:
+      - "jbpm-jobs"
+      operationId: "getRequestsByCommand"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "cmd"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "status"
+        in: "query"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      responses:
+        default:
+          description: "successful operation"
+  /server/jobs/processes/instances/{pInstanceId}:
+    get:
+      tags:
+      - "jbpm-jobs"
+      operationId: "getRequestsByProcessInstance"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "pInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "status"
+        in: "query"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      responses:
+        default:
+          description: "successful operation"
+  /server/jobs/{jobId}:
+    get:
+      tags:
+      - "jbpm-jobs"
+      operationId: "getRequestById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "jobId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "withErrors"
+        in: "query"
+        required: false
+        type: "boolean"
+      - name: "withData"
+        in: "query"
+        required: false
+        type: "boolean"
+      responses:
+        default:
+          description: "successful operation"
+    put:
+      tags:
+      - "jbpm-jobs"
+      operationId: "requeueRequest"
+      consumes:
+      - "application/xml"
+      - "application/json"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "jobId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        default:
+          description: "successful operation"
+    delete:
+      tags:
+      - "jbpm-jobs"
+      operationId: "cancelRequest"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "jobId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        default:
+          description: "successful operation"
+  /server/jobs:
+    get:
+      tags:
+      - "jbpm-jobs"
+      operationId: "getRequestsByStatus"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "status"
+        in: "query"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      responses:
+        default:
+          description: "successful operation"
+    post:
+      tags:
+      - "jbpm-jobs"
+      operationId: "scheduleRequest"
+      consumes:
+      - "application/xml"
+      - "application/json"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "containerId"
+        in: "query"
+        required: false
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/jobs/{jobId}/data:
+    post:
+      tags:
+      - "jbpm-jobs"
+      operationId: "updateRequestData"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "jobId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "containerId"
+        in: "query"
+        required: false
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/jobs/containers/{id}:
+    get:
+      tags:
+      - "jbpm-jobs"
+      operationId: "getRequestsByContainer"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "status"
+        in: "query"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/processes/instances/{pInstanceId}:
+    get:
+      tags:
+      - "jbpm-processes"
+      operationId: "getProcessInstance"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "pInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "withVars"
+        in: "query"
+        required: false
+        type: "boolean"
+      responses:
+        default:
+          description: "successful operation"
+    delete:
+      tags:
+      - "jbpm-processes"
+      operationId: "abortProcessInstance"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "pInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/processes/{pId}/instances:
+    post:
+      tags:
+      - "jbpm-processes"
+      operationId: "startProcess"
+      consumes:
+      - "application/xml"
+      - "application/json"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "pId"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/processes/instances/{pInstanceId}/workitems/{workItemId}:
+    get:
+      tags:
+      - "jbpm-processes"
+      operationId: "getWorkItem"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "pInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "workItemId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/processes/instances/{pInstanceId}/variables:
+    get:
+      tags:
+      - "jbpm-processes"
+      operationId: "getProcessInstanceVariables"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "pInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        default:
+          description: "successful operation"
+    post:
+      tags:
+      - "jbpm-processes"
+      operationId: "setProcessVariables"
+      consumes:
+      - "application/xml"
+      - "application/json"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "pInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/processes/instances:
+    get:
+      tags:
+      - "jbpm-processes"
+      operationId: "getProcessInstancesByDeploymentId"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "status"
+        in: "query"
+        required: false
+        type: "array"
+        items:
+          type: "integer"
+          format: "int32"
+        collectionFormat: "multi"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      - name: "sort"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "sortOrder"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: true
+      responses:
+        default:
+          description: "successful operation"
+    delete:
+      tags:
+      - "jbpm-processes"
+      operationId: "abortProcessInstances"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "instanceId"
+        in: "query"
+        required: false
+        type: "array"
+        items:
+          type: "integer"
+          format: "int64"
+        collectionFormat: "multi"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/processes/instances/{pInstanceId}/signal/{sName}:
+    post:
+      tags:
+      - "jbpm-processes"
+      operationId: "signalProcessInstance"
+      consumes:
+      - "application/xml"
+      - "application/json"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "pInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "sName"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/processes/instances/signal/{sName}:
+    post:
+      tags:
+      - "jbpm-processes"
+      operationId: "signalProcessInstances"
+      consumes:
+      - "application/xml"
+      - "application/json"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "instanceId"
+        in: "query"
+        required: false
+        type: "array"
+        items:
+          type: "integer"
+          format: "int64"
+        collectionFormat: "multi"
+      - name: "sName"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/processes/instances/{pInstanceId}/variable/{varName}:
+    get:
+      tags:
+      - "jbpm-processes"
+      operationId: "getProcessInstanceVariable"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "pInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "varName"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "object"
+          headers: {}
+    put:
+      tags:
+      - "jbpm-processes"
+      operationId: "setProcessVariable"
+      consumes:
+      - "application/xml"
+      - "application/json"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "pInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "varName"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/processes/instances/{pInstanceId}/signals:
+    get:
+      tags:
+      - "jbpm-processes"
+      operationId: "getAvailableSignals"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "pInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/processes/instances/{pInstanceId}/workitems:
+    get:
+      tags:
+      - "jbpm-processes"
+      operationId: "getWorkItemByProcessInstance"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "pInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/processes/instances/{pInstanceId}/variables/instances:
+    get:
+      tags:
+      - "jbpm-processes"
+      operationId: "getVariablesCurrentState"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "pInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/processes/instances/{pInstanceId}/variables/instances/{varName}:
+    get:
+      tags:
+      - "jbpm-processes"
+      operationId: "getVariableHistory"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "pInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "varName"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/processes:
+    get:
+      tags:
+      - "jbpm-processes"
+      operationId: "getProcessesByDeploymentId"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      - name: "sort"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "sortOrder"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: true
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/processes/instances/{pInstanceId}/nodes/instances:
+    get:
+      tags:
+      - "jbpm-processes"
+      operationId: "getProcessInstanceHistory"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "pInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "activeOnly"
+        in: "query"
+        required: false
+        type: "boolean"
+      - name: "completedOnly"
+        in: "query"
+        required: false
+        type: "boolean"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/processes/{pId}/instances/correlation/{correlationKey}:
+    post:
+      tags:
+      - "jbpm-processes"
+      operationId: "startProcessWithCorrelation"
+      consumes:
+      - "application/xml"
+      - "application/json"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "pId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "correlationKey"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/processes/instances/{pInstanceId}/processes:
+    get:
+      tags:
+      - "jbpm-processes"
+      operationId: "getProcessInstances"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "pInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "status"
+        in: "query"
+        required: false
+        type: "array"
+        items:
+          type: "integer"
+          format: "int32"
+        collectionFormat: "multi"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      - name: "sort"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "sortOrder"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: true
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/processes/instances/{pInstanceId}/workitems/{workItemId}/completed:
+    put:
+      tags:
+      - "jbpm-processes"
+      operationId: "completeWorkItem"
+      consumes:
+      - "application/xml"
+      - "application/json"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "pInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "workItemId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/processes/instances/{pInstanceId}/workitems/{workItemId}/aborted:
+    put:
+      tags:
+      - "jbpm-processes"
+      operationId: "abortWorkItem"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "pInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "workItemId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        default:
+          description: "successful operation"
+  /server/queries/definitions:
+    get:
+      tags:
+      - "jbpm-query-definitions"
+      operationId: "getQueries"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      responses:
+        default:
+          description: "successful operation"
+  /server/queries/definitions/{queryName}:
+    get:
+      tags:
+      - "jbpm-query-definitions"
+      operationId: "getQuery"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "queryName"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+    post:
+      tags:
+      - "jbpm-query-definitions"
+      operationId: "createQueryDefinition"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "queryName"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+    put:
+      tags:
+      - "jbpm-query-definitions"
+      operationId: "replaceQueryDefinition"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "queryName"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+    delete:
+      tags:
+      - "jbpm-query-definitions"
+      operationId: "dropQueryDefinition"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "queryName"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/queries/definitions/{queryName}/data:
+    get:
+      tags:
+      - "jbpm-query-definitions"
+      operationId: "runQuery"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "queryName"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "mapper"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "orderBy"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      responses:
+        default:
+          description: "successful operation"
+  /server/queries/definitions/{queryName}/filtered-data:
+    post:
+      tags:
+      - "jbpm-query-definitions"
+      operationId: "runQueryFiltered"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "queryName"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "mapper"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "builder"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/queries/tasks/instances/admins:
+    get:
+      tags:
+      - "jbpm-queries"
+      operationId: "getTasksAssignedAsBusinessAdministratorByStatus"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "status"
+        in: "query"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      - name: "user"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      - name: "sort"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "sortOrder"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: true
+      responses:
+        default:
+          description: "successful operation"
+  /server/queries/tasks/instances/workitem/{workItemId}:
+    get:
+      tags:
+      - "jbpm-queries"
+      operationId: "getTaskByWorkItemId"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "workItemId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        default:
+          description: "successful operation"
+  /server/queries/tasks/instances/{tInstanceId}:
+    get:
+      tags:
+      - "jbpm-queries"
+      operationId: "getTaskById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "tInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        default:
+          description: "successful operation"
+  /server/queries/tasks/instances/pot-owners:
+    get:
+      tags:
+      - "jbpm-queries"
+      operationId: "getTasksAssignedAsPotentialOwner"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "status"
+        in: "query"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      - name: "groups"
+        in: "query"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      - name: "user"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      - name: "sort"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "sortOrder"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: true
+      - name: "filter"
+        in: "query"
+        required: false
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/queries/tasks/instances/owners:
+    get:
+      tags:
+      - "jbpm-queries"
+      operationId: "getTasksOwnedByStatus"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "status"
+        in: "query"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      - name: "user"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      - name: "sort"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "sortOrder"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: true
+      responses:
+        default:
+          description: "successful operation"
+  /server/queries/tasks/instances/process/{pInstanceId}:
+    get:
+      tags:
+      - "jbpm-queries"
+      operationId: "getTasksByStatusByProcessInstanceId"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "pInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "status"
+        in: "query"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      - name: "sort"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "sortOrder"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: true
+      responses:
+        default:
+          description: "successful operation"
+  /server/queries/processes/{pId}/instances:
+    get:
+      tags:
+      - "jbpm-queries"
+      operationId: "getProcessInstancesByProcessId"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "pId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "status"
+        in: "query"
+        required: false
+        type: "array"
+        items:
+          type: "integer"
+          format: "int32"
+        collectionFormat: "multi"
+      - name: "initiator"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      - name: "sort"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "sortOrder"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: true
+      responses:
+        default:
+          description: "successful operation"
+  /server/queries/processes/instances/{pInstanceId}:
+    get:
+      tags:
+      - "jbpm-queries"
+      operationId: "getProcessInstanceById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "pInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "withVars"
+        in: "query"
+        required: false
+        type: "boolean"
+      responses:
+        default:
+          description: "successful operation"
+  /server/queries/processes/instance/correlation/{correlationKey}:
+    get:
+      tags:
+      - "jbpm-queries"
+      operationId: "getProcessInstanceByCorrelationKey"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "correlationKey"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/queries/processes/instances/correlation/{correlationKey}:
+    get:
+      tags:
+      - "jbpm-queries"
+      operationId: "getProcessInstancesByCorrelationKey"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "correlationKey"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      - name: "sort"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "sortOrder"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: true
+      responses:
+        default:
+          description: "successful operation"
+  /server/queries/processes/instances/{pInstanceId}/wi-nodes/instances/{workItemId}:
+    get:
+      tags:
+      - "jbpm-queries"
+      operationId: "getNodeInstanceForWorkItem"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "pInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "workItemId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        default:
+          description: "successful operation"
+  /server/queries/processes/instances/{pInstanceId}/variables/instances:
+    get:
+      tags:
+      - "jbpm-queries"
+      operationId: "getVariablesCurrentState"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "pInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        default:
+          description: "successful operation"
+  /server/queries/processes/instances/{pInstanceId}/variables/instances/{varName}:
+    get:
+      tags:
+      - "jbpm-queries"
+      operationId: "getVariableHistory"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "pInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "varName"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      responses:
+        default:
+          description: "successful operation"
+  /server/queries/containers/{id}/processes/definitions:
+    get:
+      tags:
+      - "jbpm-queries"
+      operationId: "getProcessesByDeploymentId"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      - name: "sort"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "sortOrder"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: true
+      responses:
+        default:
+          description: "successful operation"
+  /server/queries/processes/definitions:
+    get:
+      tags:
+      - "jbpm-queries"
+      operationId: "getProcessesByFilter"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "filter"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      - name: "sort"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "sortOrder"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: true
+      responses:
+        default:
+          description: "successful operation"
+  /server/queries/processes/definitions/{pId}:
+    get:
+      tags:
+      - "jbpm-queries"
+      operationId: "getProcessesById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "pId"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/queries/containers/{id}/processes/definitions/{pId}:
+    get:
+      tags:
+      - "jbpm-queries"
+      operationId: "getProcessesByDeploymentIdProcessId"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "pId"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/queries/tasks/instances:
+    get:
+      tags:
+      - "jbpm-queries"
+      operationId: "getAllAuditTask"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "user"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      - name: "sort"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "sortOrder"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: true
+      responses:
+        default:
+          description: "successful operation"
+  /server/queries/tasks/instances/{tInstanceId}/events:
+    get:
+      tags:
+      - "jbpm-queries"
+      operationId: "getTaskEvents"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "tInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      - name: "sort"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "sortOrder"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: true
+      responses:
+        default:
+          description: "successful operation"
+  /server/queries/containers/{id}/process/instances:
+    get:
+      tags:
+      - "jbpm-queries"
+      operationId: "getProcessInstancesByDeploymentId"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "status"
+        in: "query"
+        required: false
+        type: "array"
+        items:
+          type: "integer"
+          format: "int32"
+        collectionFormat: "multi"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      - name: "sort"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "sortOrder"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: true
+      responses:
+        default:
+          description: "successful operation"
+  /server/queries/processes/instances/{pInstanceId}/nodes/instances:
+    get:
+      tags:
+      - "jbpm-queries"
+      operationId: "getProcessInstanceHistory"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "pInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "activeOnly"
+        in: "query"
+        required: false
+        type: "boolean"
+      - name: "completedOnly"
+        in: "query"
+        required: false
+        type: "boolean"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      responses:
+        default:
+          description: "successful operation"
+  /server/queries/processes/instances/variables/{varName}:
+    get:
+      tags:
+      - "jbpm-queries"
+      operationId: "getProcessInstanceByVariables"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "varName"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "varValue"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "status"
+        in: "query"
+        required: false
+        type: "array"
+        items:
+          type: "integer"
+          format: "int32"
+        collectionFormat: "multi"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      - name: "sort"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "sortOrder"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: true
+      responses:
+        default:
+          description: "successful operation"
+  /server/queries/tasks/instances/variables/{varName}:
+    get:
+      tags:
+      - "jbpm-queries"
+      operationId: "getTasksByVariables"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "varName"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "varValue"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "status"
+        in: "query"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      - name: "user"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      - name: "sort"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "sortOrder"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: true
+      responses:
+        default:
+          description: "successful operation"
+  /server/queries/processes/instances:
+    get:
+      tags:
+      - "jbpm-queries"
+      operationId: "getProcessInstances"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "status"
+        in: "query"
+        required: false
+        type: "array"
+        items:
+          type: "integer"
+          format: "int32"
+        collectionFormat: "multi"
+      - name: "initiator"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "processName"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      - name: "sort"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "sortOrder"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: true
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/tasks/{tInstanceId}/description:
+    put:
+      tags:
+      - "jbpm-tasks"
+      operationId: "setDescription"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "tInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/tasks/{tInstanceId}/comments:
+    get:
+      tags:
+      - "jbpm-tasks"
+      operationId: "getCommentsByTaskId"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "tInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        default:
+          description: "successful operation"
+    post:
+      tags:
+      - "jbpm-tasks"
+      operationId: "addComment"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "tInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/tasks/{tInstanceId}/states/claimed:
+    put:
+      tags:
+      - "jbpm-tasks"
+      operationId: "claim"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "tInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "user"
+        in: "query"
+        required: false
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/tasks/{tInstanceId}:
+    get:
+      tags:
+      - "jbpm-tasks"
+      operationId: "getTask"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "tInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "withInputData"
+        in: "query"
+        required: false
+        type: "boolean"
+      - name: "withOutputData"
+        in: "query"
+        required: false
+        type: "boolean"
+      - name: "withAssignments"
+        in: "query"
+        required: false
+        type: "boolean"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/tasks/{tInstanceId}/contents/{contentId}:
+    delete:
+      tags:
+      - "jbpm-tasks"
+      operationId: "deleteContent"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "tInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "contentId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/tasks/{tInstanceId}/attachments/{attachmentId}:
+    get:
+      tags:
+      - "jbpm-tasks"
+      operationId: "getAttachmentById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "tInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "attachmentId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        default:
+          description: "successful operation"
+    delete:
+      tags:
+      - "jbpm-tasks"
+      operationId: "deleteAttachment"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "tInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "attachmentId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/tasks/{tInstanceId}/states/nominated:
+    put:
+      tags:
+      - "jbpm-tasks"
+      operationId: "nominate"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "tInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "user"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "potOwner"
+        in: "query"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/tasks/{tInstanceId}/comments/{commentId}:
+    get:
+      tags:
+      - "jbpm-tasks"
+      operationId: "getCommentById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "tInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "commentId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        default:
+          description: "successful operation"
+    delete:
+      tags:
+      - "jbpm-tasks"
+      operationId: "deleteComment"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "tInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "commentId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/tasks/{tInstanceId}/expiration:
+    put:
+      tags:
+      - "jbpm-tasks"
+      operationId: "setExpirationDate"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "tInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/tasks/{tInstanceId}/contents/output:
+    get:
+      tags:
+      - "jbpm-tasks"
+      operationId: "getTaskOutputContentByTaskId"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "tInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        default:
+          description: "successful operation"
+    put:
+      tags:
+      - "jbpm-tasks"
+      operationId: "saveContent"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "tInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/tasks/{tInstanceId}/attachments/{attachmentId}/content:
+    get:
+      tags:
+      - "jbpm-tasks"
+      operationId: "getAttachmentContentById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "tInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "attachmentId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/tasks/{tInstanceId}/attachments:
+    get:
+      tags:
+      - "jbpm-tasks"
+      operationId: "getAttachmentsByTaskId"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "tInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        default:
+          description: "successful operation"
+    post:
+      tags:
+      - "jbpm-tasks"
+      operationId: "addAttachment"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "tInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "user"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "name"
+        in: "query"
+        required: false
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/tasks/{tInstanceId}/events:
+    get:
+      tags:
+      - "jbpm-tasks"
+      operationId: "getTaskEvents"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "tInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      - name: "sort"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "sortOrder"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: true
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/tasks/{tInstanceId}/contents/input:
+    get:
+      tags:
+      - "jbpm-tasks"
+      operationId: "getTaskInputContentByTaskId"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "tInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/tasks/{tInstanceId}/skipable:
+    put:
+      tags:
+      - "jbpm-tasks"
+      operationId: "setSkipable"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "tInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/tasks/{tInstanceId}/states/released:
+    put:
+      tags:
+      - "jbpm-tasks"
+      operationId: "release"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "tInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "user"
+        in: "query"
+        required: false
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/tasks/{tInstanceId}/states/delegated:
+    put:
+      tags:
+      - "jbpm-tasks"
+      operationId: "delegate"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "tInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "user"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "targetUser"
+        in: "query"
+        required: false
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/tasks/{tInstanceId}/states/completed:
+    put:
+      tags:
+      - "jbpm-tasks"
+      operationId: "complete"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "tInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "user"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "auto-progress"
+        in: "query"
+        required: false
+        type: "boolean"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/tasks/{tInstanceId}/states/forwarded:
+    put:
+      tags:
+      - "jbpm-tasks"
+      operationId: "forward"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "tInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "user"
+        in: "query"
+        required: false
+        type: "string"
+      - name: "targetUser"
+        in: "query"
+        required: false
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/tasks/{tInstanceId}/states/activated:
+    put:
+      tags:
+      - "jbpm-tasks"
+      operationId: "activate"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "tInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "user"
+        in: "query"
+        required: false
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/tasks/{tInstanceId}/states/exited:
+    put:
+      tags:
+      - "jbpm-tasks"
+      operationId: "exit"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "tInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "user"
+        in: "query"
+        required: false
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/tasks/{tInstanceId}/states/started:
+    put:
+      tags:
+      - "jbpm-tasks"
+      operationId: "start"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "tInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "user"
+        in: "query"
+        required: false
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/tasks/{tInstanceId}/priority:
+    put:
+      tags:
+      - "jbpm-tasks"
+      operationId: "setPriority"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "tInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/tasks/{tInstanceId}/states/stopped:
+    put:
+      tags:
+      - "jbpm-tasks"
+      operationId: "stop"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "tInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "user"
+        in: "query"
+        required: false
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/tasks/{tInstanceId}/states/suspended:
+    put:
+      tags:
+      - "jbpm-tasks"
+      operationId: "suspend"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "tInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "user"
+        in: "query"
+        required: false
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/tasks/{tInstanceId}/states/resumed:
+    put:
+      tags:
+      - "jbpm-tasks"
+      operationId: "resume"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "tInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "user"
+        in: "query"
+        required: false
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/tasks/{tInstanceId}/name:
+    put:
+      tags:
+      - "jbpm-tasks"
+      operationId: "setName"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "tInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/tasks/{tInstanceId}/states/failed:
+    put:
+      tags:
+      - "jbpm-tasks"
+      operationId: "fail"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "tInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "user"
+        in: "query"
+        required: false
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/tasks/{tInstanceId}/states/skipped:
+    put:
+      tags:
+      - "jbpm-tasks"
+      operationId: "skip"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "tInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "user"
+        in: "query"
+        required: false
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/processes/instances/filtered-data:
+    post:
+      tags:
+      - "process-instance-search"
+      operationId: "getProcessInstancesWithFilters"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/tasks/instances/filtered-data:
+    post:
+      tags:
+      - "task-search"
+      operationId: "getHumanTasksWithFilters"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "page"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 0
+        format: "int32"
+      - name: "pageSize"
+        in: "query"
+        required: false
+        type: "integer"
+        default: 10
+        format: "int32"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/forms/processes/{pId}:
+    get:
+      tags:
+      - "jbpm-forms"
+      operationId: "getProcessForm"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "pId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "lang"
+        in: "query"
+        required: false
+        type: "string"
+        default: "en"
+      - name: "filter"
+        in: "query"
+        required: false
+        type: "boolean"
+      - name: "type"
+        in: "query"
+        required: false
+        type: "string"
+        default: "ANY"
+      - name: "marshallContent"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: true
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/forms/tasks/{tInstanceId}:
+    get:
+      tags:
+      - "jbpm-forms"
+      operationId: "getTaskForm"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "tInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      - name: "lang"
+        in: "query"
+        required: false
+        type: "string"
+        default: "en"
+      - name: "filter"
+        in: "query"
+        required: false
+        type: "boolean"
+      - name: "type"
+        in: "query"
+        required: false
+        type: "string"
+        default: "ANY"
+      - name: "marshallContent"
+        in: "query"
+        required: false
+        type: "boolean"
+        default: true
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/images/processes/instances/{pInstanceId}:
+    get:
+      tags:
+      - "jbpm-images"
+      operationId: "getProcessInstanceImage"
+      produces:
+      - "application/svg+xml"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "pInstanceId"
+        in: "path"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/images/processes/{pId}:
+    get:
+      tags:
+      - "jbpm-images"
+      operationId: "getProcessImage"
+      produces:
+      - "application/svg+xml"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "pId"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/solvers/{solverId}:
+    get:
+      tags:
+      - "planner-solvers"
+      operationId: "getSolver"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "solverId"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+    put:
+      tags:
+      - "planner-solvers"
+      operationId: "createSolver"
+      consumes:
+      - "application/xml"
+      - "application/json"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "solverId"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+    delete:
+      tags:
+      - "planner-solvers"
+      operationId: "disposeSolver"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "solverId"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/solvers:
+    get:
+      tags:
+      - "planner-solvers"
+      operationId: "getSolvers"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/solvers/{solverId}/bestsolution:
+    get:
+      tags:
+      - "planner-solvers"
+      operationId: "getSolverWithBestSolution"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "solverId"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/solvers/{solverId}/state/solving:
+    post:
+      tags:
+      - "planner-solvers"
+      operationId: "solvePlanningProblem"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "solverId"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/solvers/{solverId}/state/terminating-early:
+    post:
+      tags:
+      - "planner-solvers"
+      operationId: "terminateSolverEarly"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "solverId"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/solvers/{solverId}/problemfactchanges:
+    post:
+      tags:
+      - "planner-solvers"
+      operationId: "addProblemFactChanges"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "solverId"
+        in: "path"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        required: false
+        schema:
+          type: "string"
+      responses:
+        default:
+          description: "successful operation"
+  /server/containers/{id}/solvers/{solverId}/problemfactchanges/processed:
+    get:
+      tags:
+      - "planner-solvers"
+      operationId: "isEveryProblemFactChangeProcessed"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "solverId"
+        in: "path"
+        required: true
+        type: "string"
+      responses:
+        default:
+          description: "successful operation"

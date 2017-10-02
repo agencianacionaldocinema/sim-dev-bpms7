@@ -13,3 +13,12 @@ services:
       # - ./data:/opt/jboss/data
       # - ./logs:/opt/jboss/wildfly/standalone/log
       # - ~/.m2:/opt/jboss/.m2
+  api:
+    image: swaggerapi/swagger-ui
+    ports:
+      - "80:8080"
+    volumes:
+      - ./:/foo
+    environment:
+      - SWAGGER_JSON=/foo/swagger.json
+    
